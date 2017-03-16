@@ -73,6 +73,7 @@ type
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     procedure miStyleClick(Sender: TObject);
     procedure recExitMenuItemClick(Sender: TObject);
+    procedure recStyleMenuItemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,6 +104,18 @@ end;
 procedure TfrmMain.recExitMenuItemClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmMain.recStyleMenuItemClick(Sender: TObject);
+begin
+  // стиль
+  with TOpenDialog.Create(Owner) do try
+    Filter := 'Файлы стилей|*.style';
+    if Execute then
+      TStyleManager.SetStyleFromFile(FileName);
+  finally
+    Free;
+  end;
 end;
 
 end.
